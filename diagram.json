@@ -1,0 +1,72 @@
+{
+  "version": 1,
+  "author": "tapiocode",
+  "editor": "wokwi",
+  "parts": [
+    { "type": "wokwi-pi-pico", "id": "pico", "top": -70.45, "left": -230.4, "attrs": {} },
+    {
+      "type": "wokwi-lcd1602",
+      "id": "lcd1",
+      "top": -70.4,
+      "left": 15.2,
+      "attrs": { "pins": "i2c" }
+    },
+    {
+      "type": "wokwi-pushbutton",
+      "id": "btn1",
+      "top": 115.8,
+      "left": 17.2,
+      "attrs": { "color": "white" }
+    },
+    {
+      "type": "wokwi-pushbutton",
+      "id": "btn2",
+      "top": 183,
+      "left": 17.2,
+      "attrs": { "color": "green" }
+    },
+    {
+      "type": "wokwi-resistor",
+      "id": "r1",
+      "top": 144.6,
+      "left": -86.4,
+      "attrs": { "value": 1000 }
+    },
+    { "type": "wokwi-resistor", "id": "r2", "top": 211.8, "left": -86.4, "attrs": {} },
+    {
+      "type": "wokwi-ntc-temperature-sensor",
+      "id": "ntc1",
+      "top": -204.4,
+      "left": -9.6,
+      "rotate": 180,
+      "attrs": {}
+    },
+    {
+      "type": "wokwi-resistor",
+      "id": "r3",
+      "top": -115.4,
+      "left": -98.2,
+      "rotate": 180,
+      "attrs": { "value": 4700 }
+    }
+  ],
+  "connections": [
+    [ "pico:GP0", "$serialMonitor:RX", "", [] ],
+    [ "pico:GP1", "$serialMonitor:TX", "", [] ],
+    [ "pico:GP20", "lcd1:SDA", "white", [ "h93.8", "v-96" ] ],
+    [ "pico:GP21", "lcd1:SCL", "blue", [ "h103.4", "v-76.8" ] ],
+    [ "pico:GP27", "btn2:1.l", "yellow", [ "h36.23", "v156.05" ] ],
+    [ "pico:GP28", "btn1:1.l", "yellow", [ "h55.4", "v124.8", "h9.6" ] ],
+    [ "r1:1", "pico:GND.8", "black", [ "v0", "h-48", "v-192" ] ],
+    [ "r2:1", "pico:GND.8", "black", [ "v0", "h-48", "v-259.2" ] ],
+    [ "lcd1:GND", "pico:GND.8", "black", [ "h0" ] ],
+    [ "r1:2", "btn1:2.l", "black", [ "v0" ] ],
+    [ "r2:2", "btn2:2.l", "black", [ "v0" ] ],
+    [ "lcd1:VCC", "pico:3V3", "red", [ "h-86.4", "v0.1" ] ],
+    [ "ntc1:GND", "pico:GND.8", "black", [ "h-124.8", "v86.4" ] ],
+    [ "r3:1", "pico:GP22", "green", [ "v36.2", "h-37.6", "v115.2" ] ],
+    [ "ntc1:VCC", "r3:2", "red", [ "h-86.4" ] ],
+    [ "r3:2", "pico:3V3", "red", [ "v84.2", "h2.2" ] ],
+    [ "r3:1", "ntc1:OUT", "green", [ "v-69.4", "h0.8" ] ]
+  ]
+}
